@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+<title>Recipient</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Recipient List</h1>
+  <div id="container">
+{% for recipient in recipient_list %}
+  {{ recipient.name }}
+{% endfor %}
+  </div>
+</body>
+</html>

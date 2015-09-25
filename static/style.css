@@ -1,0 +1,26 @@
+html
+{
+	margin:0;
+	padding:0;
+}
+body 
+{
+	background-color: #551800;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8 em;
+}
+
+h1
+{
+	background-color: #0F5738;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 4px;
+}
+
+#container
+{
+	min-height: 600px;
+	border-bottom: 6px solid #003A21;
+    background-color: #F0F0F0;
+}

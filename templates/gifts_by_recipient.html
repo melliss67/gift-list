@@ -1,21 +1,21 @@
 <!doctype html>
 <html>
 <head>
-<title>Recipient</title>
+<title>Gifts</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h1>Recipient List</h1>
+<h1>Gifts for {{ recipient.name }}</h1>
   <div id="container">
   <table>
     <tr>
-      <th>Name</th>
-      <th>Birthday</th>
+      <th>Description</th>
+      <th>Cost</th>
     </tr>
-{% for recipient in recipient_list %}
+{% for gift in gift_list %}
     <tr>
-      <td>{{ recipient.name }}</td>
-      <td>{{ recipient.birthday.strftime('%B, %e') }}</td>
+      <td>{{ gift.description }}</td>
+      <td>{{ gift.cost }}</td>
     </tr>
 {% endfor %}
   </table>

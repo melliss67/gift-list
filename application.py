@@ -3,7 +3,7 @@ from werkzeug import secure_filename
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 
-from database_setup import Base, Users, Recipients
+from database_setup import Base, Users, Recipients, Gifts
 
 app = Flask(__name__)
 
@@ -22,6 +22,13 @@ def hello_world():
 def show_recipients():
     recipient_list = session.query(Recipients).all()
     return render_template('recipients.html', recipient_list = recipient_list)
+    
+@app.route('/recipient_gifts/<int:recipient_id>')
+def getGiftsByRec(recipient_id):
+    recipient = session.query(Recipients).filter_by(id=recipient_id).one()
+    gift_list = session.query(Gifts).filter_by(recipient_id=recipient_id)
+    return render_template('gifts_by_recipient.html', recipient = recipient,
+    gift_list = gift_list)
 
 if __name__ == '__main__':
     app.debug = True

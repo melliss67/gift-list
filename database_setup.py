@@ -16,6 +16,15 @@ class Recipients(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     birthday = Column(Date)
+    
+class Gifts(Base):
+    __tablename__ = 'gifts'
+    id = Column(Integer, primary_key=True)
+    recipient_id = Column(Integer,ForeignKey('recipients.id'))
+    description = Column(String(250))
+    cost = Column(Integer)
+    year = Column(Integer)
+    holiday = Column(Integer) # 1 = Christmas, 2 = birthday
 
 engine = create_engine('sqlite:///gifts.db')
 Base.metadata.create_all(engine)

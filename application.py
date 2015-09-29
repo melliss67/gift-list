@@ -67,7 +67,7 @@ def getGiftsByRec(recipient_id):
         return redirect(url_for('login'))
     else:
         recipient = session.query(Recipients).filter_by(id=recipient_id).one()
-        gift_list = session.query(Gifts).filter_by(recipient_id=recipient_id)
+        gift_list = session.query(Gifts).filter_by(recipient_id=recipient_id).order_by(Gifts.year, Gifts.holiday)
         return render_template('gifts_by_recipient.html', recipient = recipient,
         gift_list = gift_list)
         
@@ -84,7 +84,22 @@ def newRecipient():
     else:
         return render_template('new_recipient.html', 
             access_token=login_session.get('access_token'))
-    
+
+
+@app.route('/gift/new/<int:recipient_id>', methods=['GET', 'POST'])
+def newGift(recipient_id):
+    if request.method == 'POST':
+        newGift = Gifts(recipient_id=request.form['recipient_id'], 
+            year=request.form['year'], holiday=request.form['holiday'], 
+            cost=request.form['cost'], description=request.form['description'])
+        session.add(newGift)
+        session.commit()
+        return redirect(url_for('getGiftsByRec', recipient_id = recipient_id))
+    else:
+        recipient = session.query(Recipients).filter_by(id=recipient_id).one()
+        return render_template('new_gift.html', recipient=recipient,
+            access_token=login_session.get('access_token'))
+
 
 @app.route('/login')
 def login():

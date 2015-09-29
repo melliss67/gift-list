@@ -7,16 +7,25 @@
 <body>
 <h1>Gifts for {{ recipient.name }}</h1>
   <div id="container">
-  <a href="/recipients">Recipients</a>
+  <div id="action_bar">
+    <a href="/recipients" class="action">Recipients</a> |
+    <a href="/gift/new/{{ recipient.id }}" class="action">Add Gift</a> |    
+    <a href="/logout" class="action">Logout</a>
+  </div>
   <br>
   <table class="list_table">
     <tr>
       <th>Description</th>
+      <th>Year</th>
+      <th>Holiday</th>
       <th>Cost</th>
     </tr>
+{% set holidays = ["Christmas", "Birthday"] %}
 {% for gift in gift_list %}
     <tr>
       <td>{{ gift.description }}</td>
+      <td class="align_right">{{ gift.year }}</td>
+      <td>{{ holidays[gift.holiday | int -1] }}</td>
       <td class="align_right">{{ gift.cost }}</td>
     </tr>
 {% endfor %}

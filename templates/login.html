@@ -8,7 +8,8 @@
   <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
 </head>
 <body>
-<h2>Login</h2>
+<h1>Login</h1>
+<div id="container">
 <div>Login using Google Plus</div>
 <!-- GOOGLE PLUS SIGN IN-->
           <div id="signInButton">
@@ -24,7 +25,7 @@
         </div>
 
 <div id="result"></div>
-
+</div>
 <script>
 function signInCallback(authResult) {
   if (authResult['code']) {

@@ -10,6 +10,28 @@ body
 	font-size: 0.8 em;
 }
 
+a:hover 
+{
+    color: #003A21;
+    font-weight: bold;
+}
+a.action
+{
+    color: #003A21;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-decoration: none;
+    padding: 2px;
+    padding-right: 6px;
+    padding-left: 6px;
+    background-color: #E0E0E0;
+}
+a.action:hover
+{
+    font-size: 1.4em;
+    background-color: #D0D0D0;
+}
+
 h1
 {
 	background-color: #0F5738;
@@ -18,28 +40,66 @@ h1
 	padding: 4px;
 }
 
+input
+{
+	font-size: 1.2em;
+	background-color: #FFFFCC;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 2px
+}
+textarea
+{
+	font-size: 1.2em;
+	background-color: #FFFFCC;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 2px
+}
+.button 
+{
+	font-size: 1.2em;
+	text-decoration: none;
+	background-color: #FFFFCC;
+	color: #333333;
+	padding: 2px 6px 2px 6px;
+	border: 2px solid #000000;
+}
+
 table 
 {
     background-color: #FFFFFF;
     border: 2px solid #003A21;
     padding: 1px;
 }
-tr:nth-child(even) 
-{
-    background: #CCCCCC;
-}
-tr:nth-child(odd) 
-{
-    background: #FFFFFF;
-}
 th
 {
 	background-color: #0F5738;
 	color: #FFFFFF;    
 }
-.list_table
+
+table.entry_table
+{
+    border: 1px solid #003A21;
+    padding: 4px;
+}
+table.entry_table td
+{
+    border-bottom: 2px solid #003A21;
+    padding: 0px;
+}
+
+table.list_table
 {
     min-width: 400px;
+}
+table.list_table tr:nth-child(even) 
+{
+    background: #D0D0D0;
+}
+table.list_table tr:nth-child(odd) 
+{
+    background: #FFFFFF;
 }
 .align_right
 {
@@ -51,4 +111,13 @@ th
 	min-height: 600px;
 	border-bottom: 6px solid #003A21;
     background-color: #F0F0F0;
+}
+
+#action_bar
+{
+    width: 100%;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #551800;
+    padding: 2px;
+    padding-left: 30px;
 }

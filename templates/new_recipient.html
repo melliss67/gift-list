@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<title>Add Recipient</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Add Recipient</h1>
+{% if access_token %}
+  <div id="container">
+  <form action="#" method="post">
+  <br>
+  <table class="entry_table">
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" name="name"></td>
+	</tr>
+	<tr>
+     <td>Birthday: </td>
+	  <td><input type="date" name="birthday"></td>
+	</tr>
+	<tr>
+      <td class="align_right" colspan="2"><input class="button" type="submit" value="Add" id="submit"></td>
+	</tr>
+  </table>
+  </form>
+{% else %}
+  <h3>Invalid access</h3>
+  <div id="container">You must be logged in to add a recipient.</div>
+{% endif %}
+</body>
+</html>

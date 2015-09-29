@@ -7,6 +7,10 @@
 <body>
 <h1>Recipient List</h1>
   <div id="container">
+  <div id="action_bar">
+    <a href="/recipient/new" class="action">Add Recipient</a> | 
+    <a href="/logout" class="action">Logout</a>
+  </div>
   <br>
   <table class="list_table">
     <tr>
@@ -15,7 +19,7 @@
     </tr>
 {% for recipient in recipient_list %}
     <tr>
-      <td>{{ recipient.name }}</td>
+      <td><a href="/recipient_gifts/{{ recipient.id }}">{{ recipient.name }}</a></td>
       <td>{{ recipient.birthday.strftime('%B, %e') }}</td>
     </tr>
 {% endfor %}

@@ -7,7 +7,8 @@
 <body>
 <h1>Gifts for {{ recipient.name }}</h1>
   <div id="container">
-  <table>
+  <br>
+  <table class="list_table">
     <tr>
       <th>Description</th>
       <th>Cost</th>
@@ -15,7 +16,7 @@
 {% for gift in gift_list %}
     <tr>
       <td>{{ gift.description }}</td>
-      <td>{{ gift.cost }}</td>
+      <td class="align_right">{{ gift.cost }}</td>
     </tr>
 {% endfor %}
   </table>

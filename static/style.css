@@ -18,6 +18,34 @@ h1
 	padding: 4px;
 }
 
+table 
+{
+    background-color: #FFFFFF;
+    border: 2px solid #003A21;
+    padding: 1px;
+}
+tr:nth-child(even) 
+{
+    background: #CCCCCC;
+}
+tr:nth-child(odd) 
+{
+    background: #FFFFFF;
+}
+th
+{
+	background-color: #0F5738;
+	color: #FFFFFF;    
+}
+.list_table
+{
+    min-width: 400px;
+}
+.align_right
+{
+    text-align: right;
+}
+
 #container
 {
 	min-height: 600px;

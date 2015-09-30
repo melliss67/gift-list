@@ -13,17 +13,21 @@
 <h1>Edit Gift for {{ recipient.name }}</h1>
 {% if access_token %}
   <div id="information">
+    <div id="action_bar">
+      <a href="/recipients" class="action">Recipients</a> |
+      <a href="/logout" class="action">Logout</a>
+    </div>
   <form action="#" method="post">
   <input type="hidden" name="recipient_id" value="{{ recipient.id }}">
   <br>
   <table class="entry_table">
     <tr>
       <td>Description:</td>
-      <td><input type="text" name="description" value="{{ gift.description }}"></td>
+      <td><input type="text" name="description" value="{{ gift.description }}" required></td>
 	</tr>
 	<tr>
      <td>Year:</td>
-	  <td><input type="number" name="year" min="2000" max="3000" value="{{ gift.year }}"></td>
+	  <td><input type="number" name="year" min="2000" max="3000" value="{{ gift.year }}" required></td>
 	</tr>
     <tr>
      <td>Holiday:</td>
@@ -34,7 +38,7 @@
 	</tr>
     <tr>
      <td>Cost:</td>
-	  <td><input type="number" name="cost" value="{{ gift.cost }}"></td>
+	  <td><input type="number" name="cost" value="{{ gift.cost }}" required></td>
 	</tr>
 	<tr>
       <td class="align_right" colspan="2"><input class="button" type="submit" value="Save" id="submit"></td>

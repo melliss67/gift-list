@@ -76,6 +76,7 @@ def getGiftsByRec(recipient_id):
 @app.route('/recipient/new', methods=['GET', 'POST'])
 def newRecipient():
     if request.method == 'POST':
+        return request.form['birthday']
         birthdayDate = datetime.datetime.strptime(request.form['birthday'], '%Y-%m-%d').date()
         newRecipient = Recipients(name=request.form['name'],
             birthday=birthdayDate)
@@ -90,16 +91,28 @@ def newRecipient():
 @app.route('/gift/new/<int:recipient_id>', methods=['GET', 'POST'])
 def newGift(recipient_id):
     if request.method == 'POST':
-        newGift = Gifts(recipient_id=request.form['recipient_id'], 
-            year=request.form['year'], holiday=request.form['holiday'], 
-            cost=request.form['cost'], description=request.form['description'])
-        session.add(newGift)
-        session.commit()
-        return redirect(url_for('getGiftsByRec', recipient_id = recipient_id))
+        #make sure holiday it selected
+        selHoliday = request.form.get('holiday', '')
+        if not selHoliday:
+            values = {'year' : request.form['year'],
+                'cost' : request.form['cost'], 
+                'description' : request.form['description']}
+            recipient = session.query(Recipients).filter_by(id=recipient_id).one()
+            return render_template('new_gift.html', recipient=recipient,
+              access_token=login_session.get('access_token'), 
+              error='You must select a holiday.', values=values)
+        else:
+            newGift = Gifts(recipient_id=request.form['recipient_id'], 
+              year=request.form['year'], holiday=request.form['holiday'], 
+              cost=request.form['cost'], description=request.form['description'])
+            session.add(newGift)
+            session.commit()
+            return redirect(url_for('getGiftsByRec', recipient_id = recipient_id))
     else:
+        values = {}
         recipient = session.query(Recipients).filter_by(id=recipient_id).one()
         return render_template('new_gift.html', recipient=recipient,
-            access_token=login_session.get('access_token'))
+            access_token=login_session.get('access_token'), values=values)
 
 
 @app.route('/gift/edit/<int:recipient_id>/<int:gift_id>', methods=['GET', 'POST'])

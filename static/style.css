@@ -54,6 +54,16 @@ h1
 	padding: 4px;
 }
 
+.show_error
+{
+    background-color: #FFFFFF;
+	color: RED;
+	text-align: left;
+	padding: 1px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 input
 {
 	font-size: 1em;

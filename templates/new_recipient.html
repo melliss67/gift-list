@@ -13,16 +13,20 @@
 <h1>Add Recipient</h1>
 {% if access_token %}
   <div id="information">
+    <div id="action_bar">
+      <a href="/recipients" class="action">Recipients</a> |
+      <a href="/logout" class="action">Logout</a>
+    </div>
   <form action="#" method="post">
   <br>
   <table class="entry_table">
     <tr>
       <td>Name:</td>
-      <td><input type="text" name="name"></td>
+      <td><input type="text" name="name" required></td>
 	</tr>
 	<tr>
      <td>Birthday: </td>
-	  <td><input type="date" name="birthday"></td>
+	  <td><input type="date" name="birthday" required></td>
 	</tr>
 	<tr>
       <td class="align_right" colspan="2"><input class="button" type="submit" value="Add" id="submit"></td>

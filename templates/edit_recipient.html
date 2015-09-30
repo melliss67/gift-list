@@ -13,17 +13,21 @@
 <h1>Edit Recipient</h1>
 {% if access_token %}
   <div id="information">
+    <div id="action_bar">
+      <a href="/recipients" class="action">Recipients</a> |
+      <a href="/logout" class="action">Logout</a>
+    </div>
   <form action="#" method="post">
   <input type="hidden" name="recipient_id" value="{{ recipient.id }}">
   <br>
   <table class="entry_table">
     <tr>
       <td>Name:</td>
-      <td><input type="text" name="name" value="{{ recipient.name }}"></td>
+      <td><input type="text" name="name" value="{{ recipient.name }}" required></td>
 	</tr>
 	<tr>
      <td>Birthday:</td>
-	  <td><input type="date" name="birthday" value="{{ recipient.birthday }}"></td>
+	  <td><input type="date" name="birthday" value="{{ recipient.birthday }}" required></td>
 	</tr>
 	<tr>
       <td class="align_right" colspan="2"><input class="button" type="submit" value="Save" id="submit"></td>

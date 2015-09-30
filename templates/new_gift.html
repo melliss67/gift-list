@@ -11,19 +11,26 @@
 <body>
 <div class="container-fluid">
 <h1>Add Gift for {{ recipient.name }}</h1>
-{% if access_token %}
   <div id="information">
+  {% if error %}
+    <div class="show_error">{{ error }}</div>
+  {% endif %}
+    <div id="action_bar">
+      <a href="/recipients" class="action">Recipients</a> |
+      <a href="/logout" class="action">Logout</a>
+    </div>
+{% if access_token %}
   <form action="#" method="post">
   <input type="hidden" name="recipient_id" value="{{ recipient.id }}">
   <br>
   <table class="entry_table">
     <tr>
       <td>Description:</td>
-      <td><input type="text" name="description"></td>
+      <td><input type="text" name="description" value="{{ values.description }}" required></td>
 	</tr>
 	<tr>
      <td>Year:</td>
-	  <td><input type="number" name="year" min="2000" max="3000"></td>
+	  <td><input type="number" name="year" min="2000" max="3000" value="{{ values.year }}" required></td>
 	</tr>
     <tr>
      <td>Holiday:</td>
@@ -34,7 +41,7 @@
 	</tr>
     <tr>
      <td>Cost:</td>
-	  <td><input type="number" name="cost"></td>
+	  <td><input type="number" name="cost" value="{{ values.cost }}"></td>
 	</tr>
 	<tr>
       <td class="align_right" colspan="2"><input class="button" type="submit" value="Add" id="submit"></td>

@@ -132,6 +132,29 @@ def removeGift(recipient_id, gift_id):
     return redirect(url_for('getGiftsByRec', recipient_id = recipient_id))
 
 
+@app.route('/recipient/edit/<int:recipient_id>', methods=['GET', 'POST'])
+def editRecipient(recipient_id):
+    if request.method == 'POST':
+        recipient = session.query(Recipients).filter_by(id=recipient_id).one()
+        recipient.name = request.form['name']
+        birthdayDate = datetime.datetime.strptime(request.form['birthday'], '%Y-%m-%d').date()
+        recipient.birthday = birthdayDate
+        session.commit()
+        return redirect(url_for('show_recipients'))
+    else:
+        recipient = session.query(Recipients).filter_by(id=recipient_id).one()
+        return render_template('edit_recipient.html', recipient=recipient,
+            access_token=login_session.get('access_token'))
+    
+    
+@app.route('/recipient/remove/<int:recipient_id>')
+def removeRecipient(recipient_id):
+    recipient = session.query(Recipients).filter_by(id=recipient_id).one()
+    session.delete(recipient)
+    session.commit()
+    return redirect(url_for('show_recipients'))
+
+
 @app.route('/login')
 def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)

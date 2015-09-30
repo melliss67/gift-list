@@ -102,6 +102,7 @@ table.entry_table
 {
     border: 1px solid #003A21;
     padding: 4px;
+    background-color: #FFFFFF;
 }
 table.entry_table td
 {
@@ -126,7 +127,7 @@ table.list_table tr:nth-child(odd)
     text-align: right;
 }
 
-#container
+#information
 {
 	min-height: 600px;
 	border-bottom: 6px solid #003A21;

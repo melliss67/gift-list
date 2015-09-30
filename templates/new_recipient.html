@@ -2,13 +2,17 @@
 <html>
 <head>
 <title>Add Recipient</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" http-equiv="X-UA-Compatible" content="IE=8"/>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  <script src="{{ url_for('static', filename='jquery-1.11.3.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
 </head>
 <body>
+<div class="container-fluid">
 <h1>Add Recipient</h1>
 {% if access_token %}
-  <div id="container">
+  <div id="information">
   <form action="#" method="post">
   <br>
   <table class="entry_table">
@@ -29,5 +33,7 @@
   <h3>Invalid access</h3>
   <div id="container">You must be logged in to add a recipient.</div>
 {% endif %}
+  </div>
+</div>
 </body>
 </html>

@@ -101,6 +101,37 @@ def newGift(recipient_id):
             access_token=login_session.get('access_token'))
 
 
+@app.route('/gift/edit/<int:recipient_id>/<int:gift_id>', methods=['GET', 'POST'])
+def editGift(recipient_id, gift_id):
+    if request.method == 'POST':
+        gift = session.query(Gifts).filter_by(id=gift_id).one()
+        gift.description = request.form['description']
+        gift.year = request.form['year']
+        gift.description = request.form['description']
+        gift.holiday = request.form['holiday']
+        gift.cost = request.form['cost']
+        session.commit()
+        return redirect(url_for('getGiftsByRec', recipient_id = recipient_id))
+    else:
+        recipient = session.query(Recipients).filter_by(id=recipient_id).one()
+        gift = session.query(Gifts).filter_by(id=gift_id).one()
+        if gift.holiday == 1:
+            holiday_checked = [' checked ', '']
+        else:
+            holiday_checked = ['', ' checked ']
+        return render_template('edit_gift.html', recipient=recipient, gift=gift,
+            access_token=login_session.get('access_token'),
+            holiday_checked=holiday_checked)
+
+
+@app.route('/gift/remove/<int:recipient_id>/<int:gift_id>')
+def removeGift(recipient_id, gift_id):
+    gift = session.query(Gifts).filter_by(id=gift_id).one()
+    session.delete(gift)
+    session.commit()
+    return redirect(url_for('getGiftsByRec', recipient_id = recipient_id))
+
+
 @app.route('/login')
 def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)

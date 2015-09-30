@@ -20,6 +20,7 @@
       <th>Year</th>
       <th>Holiday</th>
       <th>Cost</th>
+      <th colspan="2"></th>
     </tr>
 {% set holidays = ["Christmas", "Birthday"] %}
 {% for gift in gift_list %}
@@ -28,6 +29,8 @@
       <td class="align_right">{{ gift.year }}</td>
       <td>{{ holidays[gift.holiday | int -1] }}</td>
       <td class="align_right">{{ gift.cost }}</td>
+      <td><a href="/gift/edit/{{ recipient.id }}/{{ gift.id }}" class="button"> Edit </a></td>
+      <td><a href="/gift/remove/{{ recipient.id }}/{{ gift.id }}" class="button">Remove</a></td>
     </tr>
 {% endfor %}
   </table>

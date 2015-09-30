@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<title>Edit Gift</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" http-equiv="X-UA-Compatible" content="IE=8"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Edit Gift for {{ recipient.name }}</h1>
+{% if access_token %}
+  <div id="container">
+  <form action="#" method="post">
+  <input type="hidden" name="recipient_id" value="{{ recipient.id }}">
+  <br>
+  <table class="entry_table">
+    <tr>
+      <td>Description:</td>
+      <td><input type="text" name="description" value="{{ gift.description }}"></td>
+	</tr>
+	<tr>
+     <td>Year:</td>
+	  <td><input type="number" name="year" min="2000" max="3000" value="{{ gift.year }}"></td>
+	</tr>
+    <tr>
+     <td>Holiday:</td>
+	  <td>
+        Christmas: <input type="radio" name="holiday" value="1" {{ holiday_checked[0] }}><br>
+        Birthday: <input type="radio" name="holiday" value="2" {{ holiday_checked[1] }}>        
+      </td>
+	</tr>
+    <tr>
+     <td>Cost:</td>
+	  <td><input type="number" name="cost" value="{{ gift.cost }}"></td>
+	</tr>
+	<tr>
+      <td class="align_right" colspan="2"><input class="button" type="submit" value="Save" id="submit"></td>
+	</tr>
+  </table>
+  </form>
+{% else %}
+  <h3>Invalid access</h3>
+  <div id="container">You must be logged in to add a gift.</div>
+{% endif %}
+</body>
+</html>

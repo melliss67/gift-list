@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Recipient</title>
+  <title>Holidays</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
@@ -10,26 +10,25 @@
 </head>
 <body>
 <div class="container-fluid">
-  <h1>Recipient List</h1>
+  <h1>Holiday List</h1>
   <div id="information">
     <div id="action_bar">
-      <a href="/holidays" class="action">Holidays</a> | 
-      <a href="/recipient/new" class="action">Add Recipient</a> |
+      <a href="/recipients" class="action">Recipients</a> |
       <a href="/logout" class="action">Logout</a>
     </div>
     <br>
     <table class="list_table">
       <tr>
-        <th>Name</th>
-        <th>Birthday</th>
-        <th colspan="2"></th>
+        <th>Year</th>
+        <th>Holiday</th>
+        <th></th>
       </tr>
-{% for recipient in recipient_list %}
+{% set holiday_list = ["Christmas", "Birthday"] %}
+{% for holiday in holidays %}
       <tr>
-        <td><a href="/recipient_gifts/{{ recipient.id }}">{{ recipient.name }}</a></td>
-        <td>{{ recipient.birthday.strftime('%B, %e') }}</td>
-        <td><a href="/recipient/edit/{{ recipient.id }}" class="button"> Edit </a></td>
-        <td><a href="/recipient/remove/{{ recipient.id }}" class="button">Remove</a></td>
+        <td>{{ holiday.year }}</td>
+        <td><a href="/holiday_gifts/{{ holiday.year }}/{{ holiday.holiday }}">{{ holiday_list[holiday.holiday | int -1] }}</a></td>
+        <td><a href="#" class="button"> Clear </a></td>
       </tr>
 {% endfor %}
     </table>

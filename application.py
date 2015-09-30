@@ -67,7 +67,8 @@ def getGiftsByRec(recipient_id):
         return redirect(url_for('login'))
     else:
         recipient = session.query(Recipients).filter_by(id=recipient_id).one()
-        gift_list = session.query(Gifts).filter_by(recipient_id=recipient_id).order_by(Gifts.year, Gifts.holiday)
+        gift_list = session.query(Gifts).filter_by(recipient_id=recipient_id).\
+            order_by(Gifts.year, Gifts.holiday)
         return render_template('gifts_by_recipient.html', recipient = recipient,
         gift_list = gift_list)
         
@@ -137,7 +138,8 @@ def editRecipient(recipient_id):
     if request.method == 'POST':
         recipient = session.query(Recipients).filter_by(id=recipient_id).one()
         recipient.name = request.form['name']
-        birthdayDate = datetime.datetime.strptime(request.form['birthday'], '%Y-%m-%d').date()
+        birthdayDate = datetime.datetime.strptime(request.form['birthday'],\
+            '%Y-%m-%d').date()
         recipient.birthday = birthdayDate
         session.commit()
         return redirect(url_for('show_recipients'))
@@ -153,6 +155,21 @@ def removeRecipient(recipient_id):
     session.delete(recipient)
     session.commit()
     return redirect(url_for('show_recipients'))
+
+
+@app.route('/holidays')
+def showHolidays():
+    holidays = session.query(Gifts).group_by(Gifts.year, Gifts.holiday).\
+        order_by(Gifts.year, Gifts.holiday)
+    return render_template('holidays.html', holidays=holidays)
+
+
+@app.route('/holiday_gifts/<int:year>/<int:holiday_id>')
+def holidayGifts(year, holiday_id):
+    gifts = session.query(Recipients, Gifts).join(Gifts).\
+        filter_by(year=year, holiday=holiday_id).\
+        order_by(Recipients.name)
+    return render_template('holiday_gifts.html', gifts=gifts)
 
 
 @app.route('/login')
@@ -304,7 +321,7 @@ if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=8000)
 
-    
+
 #OAuth info
 #Client ID	470201349887-jeeep5c9kie0k0cc17sb2nf9j7fqghdh.apps.googleusercontent.com
 #Client secret	M53XnIEX05nq7LJelvPB8TEE

@@ -95,7 +95,12 @@ table
 th
 {
 	background-color: #0F5738;
-	color: #FFFFFF;    
+	color: #FFFFFF;
+    padding-right: 4px;
+}
+td
+{
+    padding-right: 4px;
 }
 
 table.entry_table

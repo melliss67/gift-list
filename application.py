@@ -76,7 +76,6 @@ def getGiftsByRec(recipient_id):
 @app.route('/recipient/new', methods=['GET', 'POST'])
 def newRecipient():
     if request.method == 'POST':
-        return request.form['birthday']
         birthdayDate = datetime.datetime.strptime(request.form['birthday'], '%Y-%m-%d').date()
         newRecipient = Recipients(name=request.form['name'],
             birthday=birthdayDate)

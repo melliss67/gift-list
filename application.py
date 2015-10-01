@@ -57,7 +57,7 @@ def show_recipients():
     if not login_session.get('access_token'):
         return redirect(url_for('login'))
     else:
-        recipient_list = session.query(Recipients).all()
+        recipient_list = session.query(Recipients).order_by(Recipients.name)
         return render_template('recipients.html', recipient_list = recipient_list)
 
     

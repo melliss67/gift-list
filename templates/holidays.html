@@ -28,7 +28,7 @@
       <tr>
         <td>{{ holiday.year }}</td>
         <td><a href="/holiday_gifts/{{ holiday.year }}/{{ holiday.holiday }}">{{ holiday_list[holiday.holiday | int -1] }}</a></td>
-        <td><a href="#" class="button"> Clear </a></td>
+        <td class="align_right"><a href="#" class="button"> Clear </a></td>
       </tr>
 {% endfor %}
     </table>

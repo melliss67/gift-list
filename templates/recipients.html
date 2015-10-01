@@ -28,8 +28,8 @@
       <tr>
         <td><a href="/recipient_gifts/{{ recipient.id }}">{{ recipient.name }}</a></td>
         <td>{{ recipient.birthday.strftime('%B, %e') }}</td>
-        <td><a href="/recipient/edit/{{ recipient.id }}" class="button"> Edit </a></td>
-        <td><a href="/recipient/remove/{{ recipient.id }}" class="button">Remove</a></td>
+        <td class="align_right"><a href="/recipient/edit/{{ recipient.id }}" class="button"> Edit </a></td>
+        <td class="align_right"><a href="/recipient/remove/{{ recipient.id }}" class="button">Remove</a></td>
       </tr>
 {% endfor %}
     </table>

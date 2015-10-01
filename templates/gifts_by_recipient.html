@@ -33,8 +33,8 @@
       <td class="align_right">{{ gift.year }}</td>
       <td>{{ holidays[gift.holiday | int -1] }}</td>
       <td class="align_right">{{ gift.cost }}</td>
-      <td><a href="/gift/edit/{{ recipient.id }}/{{ gift.id }}" class="button"> Edit </a></td>
-      <td><a href="/gift/remove/{{ recipient.id }}/{{ gift.id }}" class="button">Remove</a></td>
+      <td class="align_right"><a href="/gift/edit/{{ recipient.id }}/{{ gift.id }}" class="button"> Edit </a></td>
+      <td class="align_right"><a href="/gift/remove/{{ recipient.id }}/{{ gift.id }}" class="button">Remove</a></td>
     </tr>
 {% endfor %}
   </table>

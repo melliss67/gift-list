@@ -52,7 +52,7 @@ function signInCallback(authResult) {
           $('#result').html('Login Successful!</br></br>Redirecting...')
          setTimeout(function() {
           window.location.href = "/";
-			}, 2000);
+			}, 1000);
           
       } else if (authResult['error']) {
     console.log('There was an error: ' + authResult['error']);

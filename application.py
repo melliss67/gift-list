@@ -184,6 +184,13 @@ def holidayGifts(year, holiday_id):
     return render_template('holiday_gifts.html', gifts=gifts)
 
 
+@app.route('/clear_holiday/<int:year>/<int:holiday_id>')
+def clearHoliday(year, holiday_id):
+    gifts = session.query(Gifts).filter_by(year=year, holiday=holiday_id).\
+        delete()
+    return redirect(url_for('showHolidays'))
+
+
 @app.route('/login')
 def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
